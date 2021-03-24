@@ -8,15 +8,16 @@ import News from "./components/news/news";
 import Music from "./components/music/music";
 import Settings from "./components/settings/settings";
 
+
 function App(props) {
-    const {state} = props;
+    const {state, addPost, updateNewPostText} = props;
     return (
         <BrowserRouter>
             <div id="#wrapper">
                 <Navigation navigations={state.sidebar.navigations}/>
                 <Header/>
                 <div className="main_content">
-                    <Route exact path="/" render={()=><Profile posts={state.posts} friends={state.friends} />}/>
+                    <Route exact path="/" render={()=><Profile users={state.users} posts={state.posts} friends={state.friends} updatePost={state.updatePost} addPost={addPost} updateNewPostText={updateNewPostText} />}/>
                     <Route exact path="/dialogs/:id" render={({match}) => {
                         const {id} = match.params;
                         return <Dialogs state={state} id={id}/>}}/>

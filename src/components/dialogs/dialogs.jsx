@@ -10,6 +10,13 @@ const Dialogs = (props) => {
     const {texts} = chat;
     const [userAvatar] = users.filter((user) => user.id === parseInt(id));
 
+    const elementTextarea = React.createRef();
+    const sendMessage = (e) => {
+        e.preventDefault();
+        const textAreaValue = elementTextarea.current.value;
+        console.log(textAreaValue);
+    };
+
     return (
         <div className="main_content_inner pt-0" style={{maxWidth: `1300px`}}>
             <div className="uk-grid-collapse uk-grid" uk-grid="">
@@ -35,17 +42,17 @@ const Dialogs = (props) => {
                                     <form className="uk-flex-middle uk-width-1-1 uk-grid" uk-grid="">
                                         <div className="uk-flex uk-flex-middle mr-3 uk-width-auto uk-first-column">
                                             <a href="#" className="button primary mr-2" uk-tooltip="filter" title="" aria-expanded="false">
-                                                <i className="uil-smile-wink"></i>
+                                                <i className="uil-smile-wink"/>
                                             </a>
                                             <a href="#" className="button primary" uk-tooltip="filter" title="" aria-expanded="false">
-                                                <i className="uil-link-alt"></i>
+                                                <i className="uil-link-alt"/>
                                             </a>
                                         </div>
 
-                                        <textarea className="uk-textarea uk-width-expand" rows="5" placeholder="Your Message" data-autoresize=""></textarea>
+                                        <textarea ref={elementTextarea} className="uk-textarea uk-width-expand" rows="5" placeholder="Your Message" data-autoresize=""/>
 
-                                        <button type="submit" className="button primary uk-width-auto">
-                                            <i className="uil-plane"></i>
+                                        <button type="submit" className="button primary uk-width-auto" onClick={sendMessage}>
+                                            <i className="uil-plane"/>
                                         </button>
 
                                     </form>
